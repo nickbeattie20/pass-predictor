@@ -433,7 +433,8 @@ styled = styled.format({"Duration (min)": "{:.1f}", "Max elev (°)": "{:.1f}",
                         "Closest (km)": "{:.0f}", "Peak margin (dB)": "{:.1f}"})
 if show_weather and "Rain (%)" in df and df["Rain (%)"].notna().any():
     styled = styled.background_gradient(subset=["Rain (%)"], cmap="Blues", vmin=0, vmax=100)
-    styled = styled.format({"Cloud (%)": "{:.0f}", "Rain (%)": "{:.0f}"}, na_rep="—")
+    styled = styled.format({"Cloud (%)": "{:.0f}", "Rain (%)": "{:.0f}"}, na_rep="—",
+                           subset=["Cloud (%)", "Rain (%)"])
 st.dataframe(styled, hide_index=True, width="stretch")
 notes = ["☀️ / 🌙 is a rough guide: Meteor's visible channels need daylight; "
          "channel 4 (infrared) works at night."]
